@@ -8,12 +8,33 @@ dotenv.config();
 const app = express();
 
 // Middleware
+// Better CORS configuration
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true
+  origin: [
+    'https://hr-frontend-five-phi.vercel.app',
+    'http://localhost:3000'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'HR API is working!',
+    status: 'active'
+  });
+});
+
+// Health check
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'OK',
+    timestamp: new Date()
+  });
+});
 
 // Import routes
 const authRoutes = require('./routes/authRoutes');
