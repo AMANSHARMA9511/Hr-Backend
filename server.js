@@ -21,6 +21,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// ✅ Root route
 app.get('/', (req, res) => {
   res.json({ 
     message: 'HR API is working!',
@@ -28,11 +29,29 @@ app.get('/', (req, res) => {
   });
 });
 
+// ✅ IMPORTANT: Add this /api route
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'HR Management System API',
+    version: '1.0.0',
+    endpoints: {
+      auth: '/api/auth',
+      login: '/api/auth/login',
+      register: '/api/auth/register',
+      leave: '/api/leave',
+      attendance: '/api/attendance',
+      admin: '/api/admin',
+      health: '/api/health'
+    }
+  });
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.status(200).json({ 
     status: 'OK',
-    timestamp: new Date()
+    timestamp: new Date(),
+    mongodb: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
   });
 });
 
