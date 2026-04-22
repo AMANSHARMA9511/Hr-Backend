@@ -1,32 +1,52 @@
-# HR Management System - Backend API
+# 🚀 Backend - Employee Leave & Attendance Management System
 
-Backend API for Employee Leave & Attendance Management System built with Node.js, Express, MongoDB, and Socket.IO.
+## 📌 Overview
+This backend service powers the Employee Leave & Attendance Management System. It provides REST APIs for authentication, leave management, attendance tracking, and admin controls.
 
-## 🚀 Tech Stack
+---
 
-| Technology | Purpose |
-|------------|---------|
-| **Node.js** | JavaScript runtime |
-| **Express.js** | Web framework |
-| **MongoDB Atlas** | Cloud database |
-| **JWT** | Authentication |
-| **bcryptjs** | Password hashing |
+## 🛠 Tech Stack
 
-## 📦 Installation
+- Node.js
+- Express.js
+- MongoDB (Mongoose)
+- JWT Authentication
+- bcrypt (Password hashing)
 
-```bash
-# Clone repository
-https://github.com/AMANSHARMA9511/Hr-Backend.git
-cd hr-backend
+---
 
-# Install dependencies
-npm install
+## 📂 Project Structure
+backend/
+│── controllers/
+│── models/
+│── routes/
+│── middleware/
+│── config/
+│── server.js
 
-# Create environment file
-cp .env
 
-# Run development server
-node --watch server
 
-# Run production server
-npm start
+---
+
+## 🔐 Features
+
+### 1. Authentication
+- User Registration (Employee/Admin)
+- Login with JWT
+- Password hashing using bcrypt
+
+### 2. Role-Based Access
+- Employee: Limited access (own data only)
+- Admin: Full system access
+
+### 3. Leave Management
+- Apply for leave
+- Edit/Cancel pending leave
+- Admin can approve/reject leave
+- Leave balance auto-update
+
+### 4. Attendance Management
+- Mark daily attendance
+- Restriction: One record per day
+- No future attendance allowed
+- Admin can view all records
